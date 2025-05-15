@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Injuries {
+  id        Int       @id @default(autoincrement())
+  team      String
+  player    String
+  event_type String    @map("event_type")
+  reason    String
+  start_date DateTime  @map("start_date")
+  end_date   DateTime  @map("end_date")
+  days      String
+  url       String
+}
+
+model Players {
+  id                  Int       @id @default(autoincrement())
+  first_name          String
+  second_name         String
+  goals_scored        Int
+  assists             Int
+  total_points        Int
+  minutes             Int
+  goals_conceded      Int
+  creativity          Float
+  influence           Float
+  threat              Int
+  bonus               Int
+  bps                 Int
+  ict_index           Float
+  clean_sheets        Int
+  red_cards           Int
+  yellow_cards        Int
+  selected_by_percent Float
+}
